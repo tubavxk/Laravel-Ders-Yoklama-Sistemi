@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +17,22 @@
             align-items: center;
             justify-content: center;
             background:
+                linear-gradient(rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.66)),
+                url("https://images.pexels.com/photos/5212336/pexels-photo-5212336.jpeg") center center / cover no-repeat fixed,
                 radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 26%),
                 radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.18), transparent 30%),
                 linear-gradient(180deg, #f6fbff 0%, #edf5ff 100%);
             color: #1f2937;
             padding: 24px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.22);
+            pointer-events: none;
         }
         
         .layout {
@@ -31,6 +42,8 @@
             grid-template-columns: 1.1fr 0.9fr;
             gap: 24px;
             align-items: stretch;
+            position: relative;
+            z-index: 1;
         }
         
         .hero,
@@ -39,6 +52,7 @@
             border: 1px solid rgba(226, 232, 240, 0.9);
             border-radius: 24px;
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            backdrop-filter: blur(12px);
         }
         
         .hero {
@@ -145,12 +159,18 @@
             border: none;
             padding: 14px 16px;
             border-radius: 14px;
-            background: linear-gradient(135deg, #123b9e, #2563eb);
+            background: linear-gradient(135deg, #0f766e, #14b8a6);
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+            box-shadow: 0 14px 28px rgba(20, 184, 166, 0.22);
+        }
+
+        .btn:hover {
+            filter: brightness(1.03);
+            transform: translateY(-1px);
         }
         
         @media (max-width: 900px) {
@@ -165,32 +185,31 @@
         <div class="hero">
             <div class="hero-badge">Yoklama Sistemi</div>
             <h1>Okul Yoklama Takip Projesi</h1>
-            <p>Ogrenci, ogretmen ve admin panelleriyle yoklama ve ders yonetimi yapilabilir.</p>
+            <p>Öğrenci, öğretmen ve admin panelleriyle yoklama ve ders yönetimi yapılabilir.</p>
             <div class="feature-list">
                 <div class="feature-item">QR kod ile yoklama alma</div>
-                <div class="feature-item">Ders ve kullanici yonetimi</div>
-                <div class="feature-item">Devamsizlik takibi</div>
+                <div class="feature-item">Ders ve kullanıcı yönetimi</div>
+                <div class="feature-item">Devamsızlık takibi</div>
             </div>
         </div>
         <div class="card">
-            <h2>Giris Yap</h2>
-            <p>Devam etmek icin hesap bilgilerini gir.</p>
+            <h2>Giriş Yap</h2>
+            <p>Devam etmek için hesap bilgilerini gir.</p>
             <form method="POST" action="/login">
                 @csrf
                 <div class="field">
-                    <label>Kullanici Adi / E-posta</label>
-                    <input type="text" name="kullanici" placeholder="ornek@mail.com" required>
+                    <label>Kullanıcı Adı / E-posta</label>
+                    <input type="text" name="kullanici" placeholder="örnek@mail.com" required>
                 </div>
                 <div class="field">
-                    <label>Sifre</label>
-                    <input type="password" name="sifre" placeholder="Sifreni gir" required>
+                    <label>Şifre</label>
+                    <input type="password" name="sifre" placeholder="Şifreni gir" required>
                 </div>
-                <button class="btn" type="submit">Giris Yap</button>
+                <button class="btn" type="submit">Giriş Yap</button>
             </form>
         </div>
     </div>
 </body>
 </html>
-
 
 
